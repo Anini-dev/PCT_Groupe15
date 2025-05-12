@@ -194,7 +194,13 @@ exports.Prisma.UtilisateurOrderByRelevanceFieldEnum = {
   prenom: 'prenom',
   email: 'email',
   telephone: 'telephone',
-  motDePasse: 'motDePasse'
+  motDePasse: 'motDePasse',
+  role: 'role'
+};
+
+exports.Prisma.DemandeOrderByRelevanceFieldEnum = {
+  typeActe: 'typeActe',
+  statut: 'statut'
 };
 
 exports.Prisma.FichierOrderByRelevanceFieldEnum = {
@@ -203,43 +209,23 @@ exports.Prisma.FichierOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.ActeOrderByRelevanceFieldEnum = {
-  fichierUrl: 'fichierUrl'
+  fichierUrl: 'fichierUrl',
+  type: 'type'
 };
 
 exports.Prisma.NotificationOrderByRelevanceFieldEnum = {
   message: 'message'
 };
 
+exports.Prisma.PaiementOrderByRelevanceFieldEnum = {
+  statut: 'statut',
+  moyen: 'moyen'
+};
+
 exports.Prisma.CommuneOrderByRelevanceFieldEnum = {
   nom: 'nom'
 };
-exports.Role = exports.$Enums.Role = {
-  CITOYEN: 'CITOYEN',
-  AGENT: 'AGENT'
-};
 
-exports.TypeActe = exports.$Enums.TypeActe = {
-  NAISSANCE: 'NAISSANCE',
-  MARIAGE: 'MARIAGE',
-  DECES: 'DECES'
-};
-
-exports.StatutDemande = exports.$Enums.StatutDemande = {
-  EN_ATTENTE: 'EN_ATTENTE',
-  VALIDE: 'VALIDE',
-  REJETE: 'REJETE'
-};
-
-exports.StatutPaiement = exports.$Enums.StatutPaiement = {
-  EFFECTUE: 'EFFECTUE',
-  ECHOUE: 'ECHOUE'
-};
-
-exports.MoyenPaiement = exports.$Enums.MoyenPaiement = {
-  MOBILE_MONEY: 'MOBILE_MONEY',
-  CARTE: 'CARTE',
-  ESPECE: 'ESPECE'
-};
 
 exports.Prisma.ModelName = {
   Utilisateur: 'Utilisateur',

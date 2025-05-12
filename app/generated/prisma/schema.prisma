@@ -21,7 +21,7 @@ model Utilisateur {
   email         String         @unique
   telephone     String?
   motDePasse    String
-  role          Role
+  role          String
   communeId     Int?
   commune       Commune?       @relation(fields: [communeId], references: [id])
   demandes      Demande[]
@@ -31,16 +31,16 @@ model Utilisateur {
 }
 
 model Demande {
-  id            Int           @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   utilisateurId Int
-  utilisateur   Utilisateur   @relation(fields: [utilisateurId], references: [id])
-  typeActe      TypeActe
-  statut        StatutDemande
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
+  typeActe      String?
+  statut        String?
   fichiers      Fichier[]
-  paiement      Paiement?     @relation(fields: [paiementId], references: [id])
+  paiement      Paiement?   @relation(fields: [paiementId], references: [id])
   paiementId    Int?
   acte          Acte?
-  createdAt     DateTime      @default(now())
+  createdAt     DateTime    @default(now())
 }
 
 model Fichier {
@@ -56,8 +56,8 @@ model Acte {
   id         Int      @id @default(autoincrement())
   demandeId  Int      @unique
   demande    Demande  @relation(fields: [demandeId], references: [id])
-  fichierUrl String
-  type       TypeActe
+  fichierUrl String?
+  type       String
   createdAt  DateTime @default(now())
 }
 
@@ -71,46 +71,18 @@ model Notification {
 }
 
 model Paiement {
-  id            Int            @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   montant       Float
-  statut        StatutPaiement
-  moyen         MoyenPaiement
+  statut        String
+  moyen         String
   utilisateurId Int
-  utilisateur   Utilisateur    @relation(fields: [utilisateurId], references: [id])
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id])
   demandes      Demande[]
-  createdAt     DateTime       @default(now())
+  createdAt     DateTime    @default(now())
 }
 
 model Commune {
   id           Int           @id @default(autoincrement())
   nom          String        @unique
   utilisateurs Utilisateur[]
-}
-
-enum Role {
-  CITOYEN
-  AGENT
-}
-
-enum StatutDemande {
-  EN_ATTENTE
-  VALIDE
-  REJETE
-}
-
-enum TypeActe {
-  NAISSANCE
-  MARIAGE
-  DECES
-}
-
-enum StatutPaiement {
-  EFFECTUE
-  ECHOUE
-}
-
-enum MoyenPaiement {
-  MOBILE_MONEY
-  CARTE
-  ESPECE
 }

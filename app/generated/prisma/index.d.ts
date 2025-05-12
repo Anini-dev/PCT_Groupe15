@@ -50,74 +50,6 @@ export type Paiement = $Result.DefaultSelection<Prisma.$PaiementPayload>
 export type Commune = $Result.DefaultSelection<Prisma.$CommunePayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const Role: {
-  CITOYEN: 'CITOYEN',
-  AGENT: 'AGENT'
-};
-
-export type Role = (typeof Role)[keyof typeof Role]
-
-
-export const StatutDemande: {
-  EN_ATTENTE: 'EN_ATTENTE',
-  VALIDE: 'VALIDE',
-  REJETE: 'REJETE'
-};
-
-export type StatutDemande = (typeof StatutDemande)[keyof typeof StatutDemande]
-
-
-export const TypeActe: {
-  NAISSANCE: 'NAISSANCE',
-  MARIAGE: 'MARIAGE',
-  DECES: 'DECES'
-};
-
-export type TypeActe = (typeof TypeActe)[keyof typeof TypeActe]
-
-
-export const StatutPaiement: {
-  EFFECTUE: 'EFFECTUE',
-  ECHOUE: 'ECHOUE'
-};
-
-export type StatutPaiement = (typeof StatutPaiement)[keyof typeof StatutPaiement]
-
-
-export const MoyenPaiement: {
-  MOBILE_MONEY: 'MOBILE_MONEY',
-  CARTE: 'CARTE',
-  ESPECE: 'ESPECE'
-};
-
-export type MoyenPaiement = (typeof MoyenPaiement)[keyof typeof MoyenPaiement]
-
-}
-
-export type Role = $Enums.Role
-
-export const Role: typeof $Enums.Role
-
-export type StatutDemande = $Enums.StatutDemande
-
-export const StatutDemande: typeof $Enums.StatutDemande
-
-export type TypeActe = $Enums.TypeActe
-
-export const TypeActe: typeof $Enums.TypeActe
-
-export type StatutPaiement = $Enums.StatutPaiement
-
-export const StatutPaiement: typeof $Enums.StatutPaiement
-
-export type MoyenPaiement = $Enums.MoyenPaiement
-
-export const MoyenPaiement: typeof $Enums.MoyenPaiement
-
-/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1597,7 +1529,7 @@ export namespace Prisma {
     email: string | null
     telephone: string | null
     motDePasse: string | null
-    role: $Enums.Role | null
+    role: string | null
     communeId: number | null
     createdAt: Date | null
   }
@@ -1609,7 +1541,7 @@ export namespace Prisma {
     email: string | null
     telephone: string | null
     motDePasse: string | null
-    role: $Enums.Role | null
+    role: string | null
     communeId: number | null
     createdAt: Date | null
   }
@@ -1768,7 +1700,7 @@ export namespace Prisma {
     email: string
     telephone: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     communeId: number | null
     createdAt: Date
     _count: UtilisateurCountAggregateOutputType | null
@@ -1847,7 +1779,7 @@ export namespace Prisma {
       email: string
       telephone: string | null
       motDePasse: string
-      role: $Enums.Role
+      role: string
       communeId: number | null
       createdAt: Date
     }, ExtArgs["result"]["utilisateur"]>
@@ -2229,7 +2161,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Utilisateur", 'String'>
     readonly telephone: FieldRef<"Utilisateur", 'String'>
     readonly motDePasse: FieldRef<"Utilisateur", 'String'>
-    readonly role: FieldRef<"Utilisateur", 'Role'>
+    readonly role: FieldRef<"Utilisateur", 'String'>
     readonly communeId: FieldRef<"Utilisateur", 'Int'>
     readonly createdAt: FieldRef<"Utilisateur", 'DateTime'>
   }
@@ -2711,8 +2643,8 @@ export namespace Prisma {
   export type DemandeMinAggregateOutputType = {
     id: number | null
     utilisateurId: number | null
-    typeActe: $Enums.TypeActe | null
-    statut: $Enums.StatutDemande | null
+    typeActe: string | null
+    statut: string | null
     paiementId: number | null
     createdAt: Date | null
   }
@@ -2720,8 +2652,8 @@ export namespace Prisma {
   export type DemandeMaxAggregateOutputType = {
     id: number | null
     utilisateurId: number | null
-    typeActe: $Enums.TypeActe | null
-    statut: $Enums.StatutDemande | null
+    typeActe: string | null
+    statut: string | null
     paiementId: number | null
     createdAt: Date | null
   }
@@ -2866,8 +2798,8 @@ export namespace Prisma {
   export type DemandeGroupByOutputType = {
     id: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe: string | null
+    statut: string | null
     paiementId: number | null
     createdAt: Date
     _count: DemandeCountAggregateOutputType | null
@@ -2936,8 +2868,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       utilisateurId: number
-      typeActe: $Enums.TypeActe
-      statut: $Enums.StatutDemande
+      typeActe: string | null
+      statut: string | null
       paiementId: number | null
       createdAt: Date
     }, ExtArgs["result"]["demande"]>
@@ -3315,8 +3247,8 @@ export namespace Prisma {
   interface DemandeFieldRefs {
     readonly id: FieldRef<"Demande", 'Int'>
     readonly utilisateurId: FieldRef<"Demande", 'Int'>
-    readonly typeActe: FieldRef<"Demande", 'TypeActe'>
-    readonly statut: FieldRef<"Demande", 'StatutDemande'>
+    readonly typeActe: FieldRef<"Demande", 'String'>
+    readonly statut: FieldRef<"Demande", 'String'>
     readonly paiementId: FieldRef<"Demande", 'Int'>
     readonly createdAt: FieldRef<"Demande", 'DateTime'>
   }
@@ -4735,7 +4667,7 @@ export namespace Prisma {
     id: number | null
     demandeId: number | null
     fichierUrl: string | null
-    type: $Enums.TypeActe | null
+    type: string | null
     createdAt: Date | null
   }
 
@@ -4743,7 +4675,7 @@ export namespace Prisma {
     id: number | null
     demandeId: number | null
     fichierUrl: string | null
-    type: $Enums.TypeActe | null
+    type: string | null
     createdAt: Date | null
   }
 
@@ -4881,8 +4813,8 @@ export namespace Prisma {
   export type ActeGroupByOutputType = {
     id: number
     demandeId: number
-    fichierUrl: string
-    type: $Enums.TypeActe
+    fichierUrl: string | null
+    type: string
     createdAt: Date
     _count: ActeCountAggregateOutputType | null
     _avg: ActeAvgAggregateOutputType | null
@@ -4937,8 +4869,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       demandeId: number
-      fichierUrl: string
-      type: $Enums.TypeActe
+      fichierUrl: string | null
+      type: string
       createdAt: Date
     }, ExtArgs["result"]["acte"]>
     composites: {}
@@ -5313,7 +5245,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Acte", 'Int'>
     readonly demandeId: FieldRef<"Acte", 'Int'>
     readonly fichierUrl: FieldRef<"Acte", 'String'>
-    readonly type: FieldRef<"Acte", 'TypeActe'>
+    readonly type: FieldRef<"Acte", 'String'>
     readonly createdAt: FieldRef<"Acte", 'DateTime'>
   }
     
@@ -6670,8 +6602,8 @@ export namespace Prisma {
   export type PaiementMinAggregateOutputType = {
     id: number | null
     montant: number | null
-    statut: $Enums.StatutPaiement | null
-    moyen: $Enums.MoyenPaiement | null
+    statut: string | null
+    moyen: string | null
     utilisateurId: number | null
     createdAt: Date | null
   }
@@ -6679,8 +6611,8 @@ export namespace Prisma {
   export type PaiementMaxAggregateOutputType = {
     id: number | null
     montant: number | null
-    statut: $Enums.StatutPaiement | null
-    moyen: $Enums.MoyenPaiement | null
+    statut: string | null
+    moyen: string | null
     utilisateurId: number | null
     createdAt: Date | null
   }
@@ -6825,8 +6757,8 @@ export namespace Prisma {
   export type PaiementGroupByOutputType = {
     id: number
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     utilisateurId: number
     createdAt: Date
     _count: PaiementCountAggregateOutputType | null
@@ -6889,8 +6821,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       montant: number
-      statut: $Enums.StatutPaiement
-      moyen: $Enums.MoyenPaiement
+      statut: string
+      moyen: string
       utilisateurId: number
       createdAt: Date
     }, ExtArgs["result"]["paiement"]>
@@ -7266,8 +7198,8 @@ export namespace Prisma {
   interface PaiementFieldRefs {
     readonly id: FieldRef<"Paiement", 'Int'>
     readonly montant: FieldRef<"Paiement", 'Float'>
-    readonly statut: FieldRef<"Paiement", 'StatutPaiement'>
-    readonly moyen: FieldRef<"Paiement", 'MoyenPaiement'>
+    readonly statut: FieldRef<"Paiement", 'String'>
+    readonly moyen: FieldRef<"Paiement", 'String'>
     readonly utilisateurId: FieldRef<"Paiement", 'Int'>
     readonly createdAt: FieldRef<"Paiement", 'DateTime'>
   }
@@ -8726,10 +8658,19 @@ export namespace Prisma {
     prenom: 'prenom',
     email: 'email',
     telephone: 'telephone',
-    motDePasse: 'motDePasse'
+    motDePasse: 'motDePasse',
+    role: 'role'
   };
 
   export type UtilisateurOrderByRelevanceFieldEnum = (typeof UtilisateurOrderByRelevanceFieldEnum)[keyof typeof UtilisateurOrderByRelevanceFieldEnum]
+
+
+  export const DemandeOrderByRelevanceFieldEnum: {
+    typeActe: 'typeActe',
+    statut: 'statut'
+  };
+
+  export type DemandeOrderByRelevanceFieldEnum = (typeof DemandeOrderByRelevanceFieldEnum)[keyof typeof DemandeOrderByRelevanceFieldEnum]
 
 
   export const FichierOrderByRelevanceFieldEnum: {
@@ -8741,7 +8682,8 @@ export namespace Prisma {
 
 
   export const ActeOrderByRelevanceFieldEnum: {
-    fichierUrl: 'fichierUrl'
+    fichierUrl: 'fichierUrl',
+    type: 'type'
   };
 
   export type ActeOrderByRelevanceFieldEnum = (typeof ActeOrderByRelevanceFieldEnum)[keyof typeof ActeOrderByRelevanceFieldEnum]
@@ -8752,6 +8694,14 @@ export namespace Prisma {
   };
 
   export type NotificationOrderByRelevanceFieldEnum = (typeof NotificationOrderByRelevanceFieldEnum)[keyof typeof NotificationOrderByRelevanceFieldEnum]
+
+
+  export const PaiementOrderByRelevanceFieldEnum: {
+    statut: 'statut',
+    moyen: 'moyen'
+  };
+
+  export type PaiementOrderByRelevanceFieldEnum = (typeof PaiementOrderByRelevanceFieldEnum)[keyof typeof PaiementOrderByRelevanceFieldEnum]
 
 
   export const CommuneOrderByRelevanceFieldEnum: {
@@ -8781,30 +8731,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Role'
-   */
-  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'TypeActe'
-   */
-  export type EnumTypeActeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeActe'>
-    
-
-
-  /**
-   * Reference to a field of type 'StatutDemande'
-   */
-  export type EnumStatutDemandeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatutDemande'>
     
 
 
@@ -8819,20 +8748,6 @@ export namespace Prisma {
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'StatutPaiement'
-   */
-  export type EnumStatutPaiementFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatutPaiement'>
-    
-
-
-  /**
-   * Reference to a field of type 'MoyenPaiement'
-   */
-  export type EnumMoyenPaiementFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MoyenPaiement'>
     
   /**
    * Deep Input Types
@@ -8849,7 +8764,7 @@ export namespace Prisma {
     email?: StringFilter<"Utilisateur"> | string
     telephone?: StringNullableFilter<"Utilisateur"> | string | null
     motDePasse?: StringFilter<"Utilisateur"> | string
-    role?: EnumRoleFilter<"Utilisateur"> | $Enums.Role
+    role?: StringFilter<"Utilisateur"> | string
     communeId?: IntNullableFilter<"Utilisateur"> | number | null
     createdAt?: DateTimeFilter<"Utilisateur"> | Date | string
     commune?: XOR<CommuneNullableScalarRelationFilter, CommuneWhereInput> | null
@@ -8885,7 +8800,7 @@ export namespace Prisma {
     prenom?: StringFilter<"Utilisateur"> | string
     telephone?: StringNullableFilter<"Utilisateur"> | string | null
     motDePasse?: StringFilter<"Utilisateur"> | string
-    role?: EnumRoleFilter<"Utilisateur"> | $Enums.Role
+    role?: StringFilter<"Utilisateur"> | string
     communeId?: IntNullableFilter<"Utilisateur"> | number | null
     createdAt?: DateTimeFilter<"Utilisateur"> | Date | string
     commune?: XOR<CommuneNullableScalarRelationFilter, CommuneWhereInput> | null
@@ -8921,7 +8836,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Utilisateur"> | string
     telephone?: StringNullableWithAggregatesFilter<"Utilisateur"> | string | null
     motDePasse?: StringWithAggregatesFilter<"Utilisateur"> | string
-    role?: EnumRoleWithAggregatesFilter<"Utilisateur"> | $Enums.Role
+    role?: StringWithAggregatesFilter<"Utilisateur"> | string
     communeId?: IntNullableWithAggregatesFilter<"Utilisateur"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Utilisateur"> | Date | string
   }
@@ -8932,8 +8847,8 @@ export namespace Prisma {
     NOT?: DemandeWhereInput | DemandeWhereInput[]
     id?: IntFilter<"Demande"> | number
     utilisateurId?: IntFilter<"Demande"> | number
-    typeActe?: EnumTypeActeFilter<"Demande"> | $Enums.TypeActe
-    statut?: EnumStatutDemandeFilter<"Demande"> | $Enums.StatutDemande
+    typeActe?: StringNullableFilter<"Demande"> | string | null
+    statut?: StringNullableFilter<"Demande"> | string | null
     paiementId?: IntNullableFilter<"Demande"> | number | null
     createdAt?: DateTimeFilter<"Demande"> | Date | string
     utilisateur?: XOR<UtilisateurScalarRelationFilter, UtilisateurWhereInput>
@@ -8945,14 +8860,15 @@ export namespace Prisma {
   export type DemandeOrderByWithRelationInput = {
     id?: SortOrder
     utilisateurId?: SortOrder
-    typeActe?: SortOrder
-    statut?: SortOrder
+    typeActe?: SortOrderInput | SortOrder
+    statut?: SortOrderInput | SortOrder
     paiementId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     utilisateur?: UtilisateurOrderByWithRelationInput
     fichiers?: FichierOrderByRelationAggregateInput
     paiement?: PaiementOrderByWithRelationInput
     acte?: ActeOrderByWithRelationInput
+    _relevance?: DemandeOrderByRelevanceInput
   }
 
   export type DemandeWhereUniqueInput = Prisma.AtLeast<{
@@ -8961,8 +8877,8 @@ export namespace Prisma {
     OR?: DemandeWhereInput[]
     NOT?: DemandeWhereInput | DemandeWhereInput[]
     utilisateurId?: IntFilter<"Demande"> | number
-    typeActe?: EnumTypeActeFilter<"Demande"> | $Enums.TypeActe
-    statut?: EnumStatutDemandeFilter<"Demande"> | $Enums.StatutDemande
+    typeActe?: StringNullableFilter<"Demande"> | string | null
+    statut?: StringNullableFilter<"Demande"> | string | null
     paiementId?: IntNullableFilter<"Demande"> | number | null
     createdAt?: DateTimeFilter<"Demande"> | Date | string
     utilisateur?: XOR<UtilisateurScalarRelationFilter, UtilisateurWhereInput>
@@ -8974,8 +8890,8 @@ export namespace Prisma {
   export type DemandeOrderByWithAggregationInput = {
     id?: SortOrder
     utilisateurId?: SortOrder
-    typeActe?: SortOrder
-    statut?: SortOrder
+    typeActe?: SortOrderInput | SortOrder
+    statut?: SortOrderInput | SortOrder
     paiementId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: DemandeCountOrderByAggregateInput
@@ -8991,8 +8907,8 @@ export namespace Prisma {
     NOT?: DemandeScalarWhereWithAggregatesInput | DemandeScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Demande"> | number
     utilisateurId?: IntWithAggregatesFilter<"Demande"> | number
-    typeActe?: EnumTypeActeWithAggregatesFilter<"Demande"> | $Enums.TypeActe
-    statut?: EnumStatutDemandeWithAggregatesFilter<"Demande"> | $Enums.StatutDemande
+    typeActe?: StringNullableWithAggregatesFilter<"Demande"> | string | null
+    statut?: StringNullableWithAggregatesFilter<"Demande"> | string | null
     paiementId?: IntNullableWithAggregatesFilter<"Demande"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Demande"> | Date | string
   }
@@ -9061,8 +8977,8 @@ export namespace Prisma {
     NOT?: ActeWhereInput | ActeWhereInput[]
     id?: IntFilter<"Acte"> | number
     demandeId?: IntFilter<"Acte"> | number
-    fichierUrl?: StringFilter<"Acte"> | string
-    type?: EnumTypeActeFilter<"Acte"> | $Enums.TypeActe
+    fichierUrl?: StringNullableFilter<"Acte"> | string | null
+    type?: StringFilter<"Acte"> | string
     createdAt?: DateTimeFilter<"Acte"> | Date | string
     demande?: XOR<DemandeScalarRelationFilter, DemandeWhereInput>
   }
@@ -9070,7 +8986,7 @@ export namespace Prisma {
   export type ActeOrderByWithRelationInput = {
     id?: SortOrder
     demandeId?: SortOrder
-    fichierUrl?: SortOrder
+    fichierUrl?: SortOrderInput | SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     demande?: DemandeOrderByWithRelationInput
@@ -9083,8 +8999,8 @@ export namespace Prisma {
     AND?: ActeWhereInput | ActeWhereInput[]
     OR?: ActeWhereInput[]
     NOT?: ActeWhereInput | ActeWhereInput[]
-    fichierUrl?: StringFilter<"Acte"> | string
-    type?: EnumTypeActeFilter<"Acte"> | $Enums.TypeActe
+    fichierUrl?: StringNullableFilter<"Acte"> | string | null
+    type?: StringFilter<"Acte"> | string
     createdAt?: DateTimeFilter<"Acte"> | Date | string
     demande?: XOR<DemandeScalarRelationFilter, DemandeWhereInput>
   }, "id" | "demandeId">
@@ -9092,7 +9008,7 @@ export namespace Prisma {
   export type ActeOrderByWithAggregationInput = {
     id?: SortOrder
     demandeId?: SortOrder
-    fichierUrl?: SortOrder
+    fichierUrl?: SortOrderInput | SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     _count?: ActeCountOrderByAggregateInput
@@ -9108,8 +9024,8 @@ export namespace Prisma {
     NOT?: ActeScalarWhereWithAggregatesInput | ActeScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Acte"> | number
     demandeId?: IntWithAggregatesFilter<"Acte"> | number
-    fichierUrl?: StringWithAggregatesFilter<"Acte"> | string
-    type?: EnumTypeActeWithAggregatesFilter<"Acte"> | $Enums.TypeActe
+    fichierUrl?: StringNullableWithAggregatesFilter<"Acte"> | string | null
+    type?: StringWithAggregatesFilter<"Acte"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Acte"> | Date | string
   }
 
@@ -9177,8 +9093,8 @@ export namespace Prisma {
     NOT?: PaiementWhereInput | PaiementWhereInput[]
     id?: IntFilter<"Paiement"> | number
     montant?: FloatFilter<"Paiement"> | number
-    statut?: EnumStatutPaiementFilter<"Paiement"> | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFilter<"Paiement"> | $Enums.MoyenPaiement
+    statut?: StringFilter<"Paiement"> | string
+    moyen?: StringFilter<"Paiement"> | string
     utilisateurId?: IntFilter<"Paiement"> | number
     createdAt?: DateTimeFilter<"Paiement"> | Date | string
     utilisateur?: XOR<UtilisateurScalarRelationFilter, UtilisateurWhereInput>
@@ -9194,6 +9110,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     utilisateur?: UtilisateurOrderByWithRelationInput
     demandes?: DemandeOrderByRelationAggregateInput
+    _relevance?: PaiementOrderByRelevanceInput
   }
 
   export type PaiementWhereUniqueInput = Prisma.AtLeast<{
@@ -9202,8 +9119,8 @@ export namespace Prisma {
     OR?: PaiementWhereInput[]
     NOT?: PaiementWhereInput | PaiementWhereInput[]
     montant?: FloatFilter<"Paiement"> | number
-    statut?: EnumStatutPaiementFilter<"Paiement"> | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFilter<"Paiement"> | $Enums.MoyenPaiement
+    statut?: StringFilter<"Paiement"> | string
+    moyen?: StringFilter<"Paiement"> | string
     utilisateurId?: IntFilter<"Paiement"> | number
     createdAt?: DateTimeFilter<"Paiement"> | Date | string
     utilisateur?: XOR<UtilisateurScalarRelationFilter, UtilisateurWhereInput>
@@ -9230,8 +9147,8 @@ export namespace Prisma {
     NOT?: PaiementScalarWhereWithAggregatesInput | PaiementScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Paiement"> | number
     montant?: FloatWithAggregatesFilter<"Paiement"> | number
-    statut?: EnumStatutPaiementWithAggregatesFilter<"Paiement"> | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementWithAggregatesFilter<"Paiement"> | $Enums.MoyenPaiement
+    statut?: StringWithAggregatesFilter<"Paiement"> | string
+    moyen?: StringWithAggregatesFilter<"Paiement"> | string
     utilisateurId?: IntWithAggregatesFilter<"Paiement"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Paiement"> | Date | string
   }
@@ -9285,7 +9202,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
     commune?: CommuneCreateNestedOneWithoutUtilisateursInput
     demandes?: DemandeCreateNestedManyWithoutUtilisateurInput
@@ -9300,7 +9217,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     communeId?: number | null
     createdAt?: Date | string
     demandes?: DemandeUncheckedCreateNestedManyWithoutUtilisateurInput
@@ -9314,7 +9231,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     commune?: CommuneUpdateOneWithoutUtilisateursNestedInput
     demandes?: DemandeUpdateManyWithoutUtilisateurNestedInput
@@ -9329,7 +9246,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     communeId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUncheckedUpdateManyWithoutUtilisateurNestedInput
@@ -9344,7 +9261,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     communeId?: number | null
     createdAt?: Date | string
   }
@@ -9355,7 +9272,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9366,14 +9283,14 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     communeId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DemandeCreateInput = {
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
     utilisateur: UtilisateurCreateNestedOneWithoutDemandesInput
     fichiers?: FichierCreateNestedManyWithoutDemandeInput
@@ -9384,8 +9301,8 @@ export namespace Prisma {
   export type DemandeUncheckedCreateInput = {
     id?: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     paiementId?: number | null
     createdAt?: Date | string
     fichiers?: FichierUncheckedCreateNestedManyWithoutDemandeInput
@@ -9393,8 +9310,8 @@ export namespace Prisma {
   }
 
   export type DemandeUpdateInput = {
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     utilisateur?: UtilisateurUpdateOneRequiredWithoutDemandesNestedInput
     fichiers?: FichierUpdateManyWithoutDemandeNestedInput
@@ -9405,8 +9322,8 @@ export namespace Prisma {
   export type DemandeUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     utilisateurId?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     paiementId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fichiers?: FichierUncheckedUpdateManyWithoutDemandeNestedInput
@@ -9416,23 +9333,23 @@ export namespace Prisma {
   export type DemandeCreateManyInput = {
     id?: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     paiementId?: number | null
     createdAt?: Date | string
   }
 
   export type DemandeUpdateManyMutationInput = {
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DemandeUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     utilisateurId?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     paiementId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9490,8 +9407,8 @@ export namespace Prisma {
   }
 
   export type ActeCreateInput = {
-    fichierUrl: string
-    type: $Enums.TypeActe
+    fichierUrl?: string | null
+    type: string
     createdAt?: Date | string
     demande: DemandeCreateNestedOneWithoutActeInput
   }
@@ -9499,14 +9416,14 @@ export namespace Prisma {
   export type ActeUncheckedCreateInput = {
     id?: number
     demandeId: number
-    fichierUrl: string
-    type: $Enums.TypeActe
+    fichierUrl?: string | null
+    type: string
     createdAt?: Date | string
   }
 
   export type ActeUpdateInput = {
-    fichierUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
+    fichierUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demande?: DemandeUpdateOneRequiredWithoutActeNestedInput
   }
@@ -9514,30 +9431,30 @@ export namespace Prisma {
   export type ActeUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     demandeId?: IntFieldUpdateOperationsInput | number
-    fichierUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
+    fichierUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActeCreateManyInput = {
     id?: number
     demandeId: number
-    fichierUrl: string
-    type: $Enums.TypeActe
+    fichierUrl?: string | null
+    type: string
     createdAt?: Date | string
   }
 
   export type ActeUpdateManyMutationInput = {
-    fichierUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
+    fichierUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActeUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     demandeId?: IntFieldUpdateOperationsInput | number
-    fichierUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
+    fichierUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9595,8 +9512,8 @@ export namespace Prisma {
 
   export type PaiementCreateInput = {
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     createdAt?: Date | string
     utilisateur: UtilisateurCreateNestedOneWithoutPaiementsInput
     demandes?: DemandeCreateNestedManyWithoutPaiementInput
@@ -9605,8 +9522,8 @@ export namespace Prisma {
   export type PaiementUncheckedCreateInput = {
     id?: number
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     utilisateurId: number
     createdAt?: Date | string
     demandes?: DemandeUncheckedCreateNestedManyWithoutPaiementInput
@@ -9614,8 +9531,8 @@ export namespace Prisma {
 
   export type PaiementUpdateInput = {
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     utilisateur?: UtilisateurUpdateOneRequiredWithoutPaiementsNestedInput
     demandes?: DemandeUpdateManyWithoutPaiementNestedInput
@@ -9624,8 +9541,8 @@ export namespace Prisma {
   export type PaiementUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     utilisateurId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUncheckedUpdateManyWithoutPaiementNestedInput
@@ -9634,24 +9551,24 @@ export namespace Prisma {
   export type PaiementCreateManyInput = {
     id?: number
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     utilisateurId: number
     createdAt?: Date | string
   }
 
   export type PaiementUpdateManyMutationInput = {
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaiementUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     utilisateurId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9731,13 +9648,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type EnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[]
-    notIn?: $Enums.Role[]
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -9906,16 +9816,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[]
-    notIn?: $Enums.Role[]
-    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRoleFilter<$PrismaModel>
-    _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -9946,20 +9846,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EnumTypeActeFilter<$PrismaModel = never> = {
-    equals?: $Enums.TypeActe | EnumTypeActeFieldRefInput<$PrismaModel>
-    in?: $Enums.TypeActe[]
-    notIn?: $Enums.TypeActe[]
-    not?: NestedEnumTypeActeFilter<$PrismaModel> | $Enums.TypeActe
-  }
-
-  export type EnumStatutDemandeFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutDemande | EnumStatutDemandeFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutDemande[]
-    notIn?: $Enums.StatutDemande[]
-    not?: NestedEnumStatutDemandeFilter<$PrismaModel> | $Enums.StatutDemande
-  }
-
   export type UtilisateurScalarRelationFilter = {
     is?: UtilisateurWhereInput
     isNot?: UtilisateurWhereInput
@@ -9983,6 +9869,12 @@ export namespace Prisma {
 
   export type FichierOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type DemandeOrderByRelevanceInput = {
+    fields: DemandeOrderByRelevanceFieldEnum | DemandeOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type DemandeCountOrderByAggregateInput = {
@@ -10022,26 +9914,6 @@ export namespace Prisma {
     id?: SortOrder
     utilisateurId?: SortOrder
     paiementId?: SortOrder
-  }
-
-  export type EnumTypeActeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TypeActe | EnumTypeActeFieldRefInput<$PrismaModel>
-    in?: $Enums.TypeActe[]
-    notIn?: $Enums.TypeActe[]
-    not?: NestedEnumTypeActeWithAggregatesFilter<$PrismaModel> | $Enums.TypeActe
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTypeActeFilter<$PrismaModel>
-    _max?: NestedEnumTypeActeFilter<$PrismaModel>
-  }
-
-  export type EnumStatutDemandeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutDemande | EnumStatutDemandeFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutDemande[]
-    notIn?: $Enums.StatutDemande[]
-    not?: NestedEnumStatutDemandeWithAggregatesFilter<$PrismaModel> | $Enums.StatutDemande
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatutDemandeFilter<$PrismaModel>
-    _max?: NestedEnumStatutDemandeFilter<$PrismaModel>
   }
 
   export type DemandeScalarRelationFilter = {
@@ -10193,18 +10065,10 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type EnumStatutPaiementFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutPaiement | EnumStatutPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutPaiement[]
-    notIn?: $Enums.StatutPaiement[]
-    not?: NestedEnumStatutPaiementFilter<$PrismaModel> | $Enums.StatutPaiement
-  }
-
-  export type EnumMoyenPaiementFilter<$PrismaModel = never> = {
-    equals?: $Enums.MoyenPaiement | EnumMoyenPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.MoyenPaiement[]
-    notIn?: $Enums.MoyenPaiement[]
-    not?: NestedEnumMoyenPaiementFilter<$PrismaModel> | $Enums.MoyenPaiement
+  export type PaiementOrderByRelevanceInput = {
+    fields: PaiementOrderByRelevanceFieldEnum | PaiementOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type PaiementCountOrderByAggregateInput = {
@@ -10260,26 +10124,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type EnumStatutPaiementWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutPaiement | EnumStatutPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutPaiement[]
-    notIn?: $Enums.StatutPaiement[]
-    not?: NestedEnumStatutPaiementWithAggregatesFilter<$PrismaModel> | $Enums.StatutPaiement
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatutPaiementFilter<$PrismaModel>
-    _max?: NestedEnumStatutPaiementFilter<$PrismaModel>
-  }
-
-  export type EnumMoyenPaiementWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MoyenPaiement | EnumMoyenPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.MoyenPaiement[]
-    notIn?: $Enums.MoyenPaiement[]
-    not?: NestedEnumMoyenPaiementWithAggregatesFilter<$PrismaModel> | $Enums.MoyenPaiement
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMoyenPaiementFilter<$PrismaModel>
-    _max?: NestedEnumMoyenPaiementFilter<$PrismaModel>
   }
 
   export type UtilisateurListRelationFilter = {
@@ -10375,10 +10219,6 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type EnumRoleFieldUpdateOperationsInput = {
-    set?: $Enums.Role
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -10533,14 +10373,6 @@ export namespace Prisma {
     connect?: ActeWhereUniqueInput
   }
 
-  export type EnumTypeActeFieldUpdateOperationsInput = {
-    set?: $Enums.TypeActe
-  }
-
-  export type EnumStatutDemandeFieldUpdateOperationsInput = {
-    set?: $Enums.StatutDemande
-  }
-
   export type UtilisateurUpdateOneRequiredWithoutDemandesNestedInput = {
     create?: XOR<UtilisateurCreateWithoutDemandesInput, UtilisateurUncheckedCreateWithoutDemandesInput>
     connectOrCreate?: UtilisateurCreateOrConnectWithoutDemandesInput
@@ -10681,14 +10513,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type EnumStatutPaiementFieldUpdateOperationsInput = {
-    set?: $Enums.StatutPaiement
-  }
-
-  export type EnumMoyenPaiementFieldUpdateOperationsInput = {
-    set?: $Enums.MoyenPaiement
-  }
-
   export type UtilisateurUpdateOneRequiredWithoutPaiementsNestedInput = {
     create?: XOR<UtilisateurCreateWithoutPaiementsInput, UtilisateurUncheckedCreateWithoutPaiementsInput>
     connectOrCreate?: UtilisateurCreateOrConnectWithoutPaiementsInput
@@ -10808,13 +10632,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedEnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[]
-    notIn?: $Enums.Role[]
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
-
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -10900,16 +10717,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[]
-    notIn?: $Enums.Role[]
-    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRoleFilter<$PrismaModel>
-    _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -10951,40 +10758,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumTypeActeFilter<$PrismaModel = never> = {
-    equals?: $Enums.TypeActe | EnumTypeActeFieldRefInput<$PrismaModel>
-    in?: $Enums.TypeActe[]
-    notIn?: $Enums.TypeActe[]
-    not?: NestedEnumTypeActeFilter<$PrismaModel> | $Enums.TypeActe
-  }
-
-  export type NestedEnumStatutDemandeFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutDemande | EnumStatutDemandeFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutDemande[]
-    notIn?: $Enums.StatutDemande[]
-    not?: NestedEnumStatutDemandeFilter<$PrismaModel> | $Enums.StatutDemande
-  }
-
-  export type NestedEnumTypeActeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TypeActe | EnumTypeActeFieldRefInput<$PrismaModel>
-    in?: $Enums.TypeActe[]
-    notIn?: $Enums.TypeActe[]
-    not?: NestedEnumTypeActeWithAggregatesFilter<$PrismaModel> | $Enums.TypeActe
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTypeActeFilter<$PrismaModel>
-    _max?: NestedEnumTypeActeFilter<$PrismaModel>
-  }
-
-  export type NestedEnumStatutDemandeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutDemande | EnumStatutDemandeFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutDemande[]
-    notIn?: $Enums.StatutDemande[]
-    not?: NestedEnumStatutDemandeWithAggregatesFilter<$PrismaModel> | $Enums.StatutDemande
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatutDemandeFilter<$PrismaModel>
-    _max?: NestedEnumStatutDemandeFilter<$PrismaModel>
-  }
-
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -10996,20 +10769,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedEnumStatutPaiementFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutPaiement | EnumStatutPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutPaiement[]
-    notIn?: $Enums.StatutPaiement[]
-    not?: NestedEnumStatutPaiementFilter<$PrismaModel> | $Enums.StatutPaiement
-  }
-
-  export type NestedEnumMoyenPaiementFilter<$PrismaModel = never> = {
-    equals?: $Enums.MoyenPaiement | EnumMoyenPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.MoyenPaiement[]
-    notIn?: $Enums.MoyenPaiement[]
-    not?: NestedEnumMoyenPaiementFilter<$PrismaModel> | $Enums.MoyenPaiement
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -11028,26 +10787,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatutPaiementWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatutPaiement | EnumStatutPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.StatutPaiement[]
-    notIn?: $Enums.StatutPaiement[]
-    not?: NestedEnumStatutPaiementWithAggregatesFilter<$PrismaModel> | $Enums.StatutPaiement
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatutPaiementFilter<$PrismaModel>
-    _max?: NestedEnumStatutPaiementFilter<$PrismaModel>
-  }
-
-  export type NestedEnumMoyenPaiementWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MoyenPaiement | EnumMoyenPaiementFieldRefInput<$PrismaModel>
-    in?: $Enums.MoyenPaiement[]
-    notIn?: $Enums.MoyenPaiement[]
-    not?: NestedEnumMoyenPaiementWithAggregatesFilter<$PrismaModel> | $Enums.MoyenPaiement
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMoyenPaiementFilter<$PrismaModel>
-    _max?: NestedEnumMoyenPaiementFilter<$PrismaModel>
-  }
-
   export type CommuneCreateWithoutUtilisateursInput = {
     nom: string
   }
@@ -11063,8 +10802,8 @@ export namespace Prisma {
   }
 
   export type DemandeCreateWithoutUtilisateurInput = {
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
     fichiers?: FichierCreateNestedManyWithoutDemandeInput
     paiement?: PaiementCreateNestedOneWithoutDemandesInput
@@ -11073,8 +10812,8 @@ export namespace Prisma {
 
   export type DemandeUncheckedCreateWithoutUtilisateurInput = {
     id?: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     paiementId?: number | null
     createdAt?: Date | string
     fichiers?: FichierUncheckedCreateNestedManyWithoutDemandeInput
@@ -11093,8 +10832,8 @@ export namespace Prisma {
 
   export type PaiementCreateWithoutUtilisateurInput = {
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     createdAt?: Date | string
     demandes?: DemandeCreateNestedManyWithoutPaiementInput
   }
@@ -11102,8 +10841,8 @@ export namespace Prisma {
   export type PaiementUncheckedCreateWithoutUtilisateurInput = {
     id?: number
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     createdAt?: Date | string
     demandes?: DemandeUncheckedCreateNestedManyWithoutPaiementInput
   }
@@ -11183,8 +10922,8 @@ export namespace Prisma {
     NOT?: DemandeScalarWhereInput | DemandeScalarWhereInput[]
     id?: IntFilter<"Demande"> | number
     utilisateurId?: IntFilter<"Demande"> | number
-    typeActe?: EnumTypeActeFilter<"Demande"> | $Enums.TypeActe
-    statut?: EnumStatutDemandeFilter<"Demande"> | $Enums.StatutDemande
+    typeActe?: StringNullableFilter<"Demande"> | string | null
+    statut?: StringNullableFilter<"Demande"> | string | null
     paiementId?: IntNullableFilter<"Demande"> | number | null
     createdAt?: DateTimeFilter<"Demande"> | Date | string
   }
@@ -11211,8 +10950,8 @@ export namespace Prisma {
     NOT?: PaiementScalarWhereInput | PaiementScalarWhereInput[]
     id?: IntFilter<"Paiement"> | number
     montant?: FloatFilter<"Paiement"> | number
-    statut?: EnumStatutPaiementFilter<"Paiement"> | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFilter<"Paiement"> | $Enums.MoyenPaiement
+    statut?: StringFilter<"Paiement"> | string
+    moyen?: StringFilter<"Paiement"> | string
     utilisateurId?: IntFilter<"Paiement"> | number
     createdAt?: DateTimeFilter<"Paiement"> | Date | string
   }
@@ -11250,7 +10989,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
     commune?: CommuneCreateNestedOneWithoutUtilisateursInput
     paiements?: PaiementCreateNestedManyWithoutUtilisateurInput
@@ -11264,7 +11003,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     communeId?: number | null
     createdAt?: Date | string
     paiements?: PaiementUncheckedCreateNestedManyWithoutUtilisateurInput
@@ -11301,8 +11040,8 @@ export namespace Prisma {
 
   export type PaiementCreateWithoutDemandesInput = {
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     createdAt?: Date | string
     utilisateur: UtilisateurCreateNestedOneWithoutPaiementsInput
   }
@@ -11310,8 +11049,8 @@ export namespace Prisma {
   export type PaiementUncheckedCreateWithoutDemandesInput = {
     id?: number
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     utilisateurId: number
     createdAt?: Date | string
   }
@@ -11322,15 +11061,15 @@ export namespace Prisma {
   }
 
   export type ActeCreateWithoutDemandeInput = {
-    fichierUrl: string
-    type: $Enums.TypeActe
+    fichierUrl?: string | null
+    type: string
     createdAt?: Date | string
   }
 
   export type ActeUncheckedCreateWithoutDemandeInput = {
     id?: number
-    fichierUrl: string
-    type: $Enums.TypeActe
+    fichierUrl?: string | null
+    type: string
     createdAt?: Date | string
   }
 
@@ -11356,7 +11095,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     commune?: CommuneUpdateOneWithoutUtilisateursNestedInput
     paiements?: PaiementUpdateManyWithoutUtilisateurNestedInput
@@ -11370,7 +11109,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     communeId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     paiements?: PaiementUncheckedUpdateManyWithoutUtilisateurNestedInput
@@ -11417,8 +11156,8 @@ export namespace Prisma {
 
   export type PaiementUpdateWithoutDemandesInput = {
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     utilisateur?: UtilisateurUpdateOneRequiredWithoutPaiementsNestedInput
   }
@@ -11426,8 +11165,8 @@ export namespace Prisma {
   export type PaiementUncheckedUpdateWithoutDemandesInput = {
     id?: IntFieldUpdateOperationsInput | number
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     utilisateurId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11444,21 +11183,21 @@ export namespace Prisma {
   }
 
   export type ActeUpdateWithoutDemandeInput = {
-    fichierUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
+    fichierUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActeUncheckedUpdateWithoutDemandeInput = {
     id?: IntFieldUpdateOperationsInput | number
-    fichierUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
+    fichierUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DemandeCreateWithoutFichiersInput = {
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
     utilisateur: UtilisateurCreateNestedOneWithoutDemandesInput
     paiement?: PaiementCreateNestedOneWithoutDemandesInput
@@ -11468,8 +11207,8 @@ export namespace Prisma {
   export type DemandeUncheckedCreateWithoutFichiersInput = {
     id?: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     paiementId?: number | null
     createdAt?: Date | string
     acte?: ActeUncheckedCreateNestedOneWithoutDemandeInput
@@ -11492,8 +11231,8 @@ export namespace Prisma {
   }
 
   export type DemandeUpdateWithoutFichiersInput = {
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     utilisateur?: UtilisateurUpdateOneRequiredWithoutDemandesNestedInput
     paiement?: PaiementUpdateOneWithoutDemandesNestedInput
@@ -11503,16 +11242,16 @@ export namespace Prisma {
   export type DemandeUncheckedUpdateWithoutFichiersInput = {
     id?: IntFieldUpdateOperationsInput | number
     utilisateurId?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     paiementId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     acte?: ActeUncheckedUpdateOneWithoutDemandeNestedInput
   }
 
   export type DemandeCreateWithoutActeInput = {
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
     utilisateur: UtilisateurCreateNestedOneWithoutDemandesInput
     fichiers?: FichierCreateNestedManyWithoutDemandeInput
@@ -11522,8 +11261,8 @@ export namespace Prisma {
   export type DemandeUncheckedCreateWithoutActeInput = {
     id?: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     paiementId?: number | null
     createdAt?: Date | string
     fichiers?: FichierUncheckedCreateNestedManyWithoutDemandeInput
@@ -11546,8 +11285,8 @@ export namespace Prisma {
   }
 
   export type DemandeUpdateWithoutActeInput = {
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     utilisateur?: UtilisateurUpdateOneRequiredWithoutDemandesNestedInput
     fichiers?: FichierUpdateManyWithoutDemandeNestedInput
@@ -11557,8 +11296,8 @@ export namespace Prisma {
   export type DemandeUncheckedUpdateWithoutActeInput = {
     id?: IntFieldUpdateOperationsInput | number
     utilisateurId?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     paiementId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fichiers?: FichierUncheckedUpdateManyWithoutDemandeNestedInput
@@ -11570,7 +11309,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
     commune?: CommuneCreateNestedOneWithoutUtilisateursInput
     demandes?: DemandeCreateNestedManyWithoutUtilisateurInput
@@ -11584,7 +11323,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     communeId?: number | null
     createdAt?: Date | string
     demandes?: DemandeUncheckedCreateNestedManyWithoutUtilisateurInput
@@ -11613,7 +11352,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     commune?: CommuneUpdateOneWithoutUtilisateursNestedInput
     demandes?: DemandeUpdateManyWithoutUtilisateurNestedInput
@@ -11627,7 +11366,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     communeId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUncheckedUpdateManyWithoutUtilisateurNestedInput
@@ -11640,7 +11379,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
     commune?: CommuneCreateNestedOneWithoutUtilisateursInput
     demandes?: DemandeCreateNestedManyWithoutUtilisateurInput
@@ -11654,7 +11393,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     communeId?: number | null
     createdAt?: Date | string
     demandes?: DemandeUncheckedCreateNestedManyWithoutUtilisateurInput
@@ -11667,8 +11406,8 @@ export namespace Prisma {
   }
 
   export type DemandeCreateWithoutPaiementInput = {
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
     utilisateur: UtilisateurCreateNestedOneWithoutDemandesInput
     fichiers?: FichierCreateNestedManyWithoutDemandeInput
@@ -11678,8 +11417,8 @@ export namespace Prisma {
   export type DemandeUncheckedCreateWithoutPaiementInput = {
     id?: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
     fichiers?: FichierUncheckedCreateNestedManyWithoutDemandeInput
     acte?: ActeUncheckedCreateNestedOneWithoutDemandeInput
@@ -11712,7 +11451,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     commune?: CommuneUpdateOneWithoutUtilisateursNestedInput
     demandes?: DemandeUpdateManyWithoutUtilisateurNestedInput
@@ -11726,7 +11465,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     communeId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUncheckedUpdateManyWithoutUtilisateurNestedInput
@@ -11755,7 +11494,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
     demandes?: DemandeCreateNestedManyWithoutUtilisateurInput
     paiements?: PaiementCreateNestedManyWithoutUtilisateurInput
@@ -11769,7 +11508,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
     demandes?: DemandeUncheckedCreateNestedManyWithoutUtilisateurInput
     paiements?: PaiementUncheckedCreateNestedManyWithoutUtilisateurInput
@@ -11812,15 +11551,15 @@ export namespace Prisma {
     email?: StringFilter<"Utilisateur"> | string
     telephone?: StringNullableFilter<"Utilisateur"> | string | null
     motDePasse?: StringFilter<"Utilisateur"> | string
-    role?: EnumRoleFilter<"Utilisateur"> | $Enums.Role
+    role?: StringFilter<"Utilisateur"> | string
     communeId?: IntNullableFilter<"Utilisateur"> | number | null
     createdAt?: DateTimeFilter<"Utilisateur"> | Date | string
   }
 
   export type DemandeCreateManyUtilisateurInput = {
     id?: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     paiementId?: number | null
     createdAt?: Date | string
   }
@@ -11828,8 +11567,8 @@ export namespace Prisma {
   export type PaiementCreateManyUtilisateurInput = {
     id?: number
     montant: number
-    statut: $Enums.StatutPaiement
-    moyen: $Enums.MoyenPaiement
+    statut: string
+    moyen: string
     createdAt?: Date | string
   }
 
@@ -11841,8 +11580,8 @@ export namespace Prisma {
   }
 
   export type DemandeUpdateWithoutUtilisateurInput = {
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fichiers?: FichierUpdateManyWithoutDemandeNestedInput
     paiement?: PaiementUpdateOneWithoutDemandesNestedInput
@@ -11851,8 +11590,8 @@ export namespace Prisma {
 
   export type DemandeUncheckedUpdateWithoutUtilisateurInput = {
     id?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     paiementId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fichiers?: FichierUncheckedUpdateManyWithoutDemandeNestedInput
@@ -11861,16 +11600,16 @@ export namespace Prisma {
 
   export type DemandeUncheckedUpdateManyWithoutUtilisateurInput = {
     id?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     paiementId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaiementUpdateWithoutUtilisateurInput = {
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUpdateManyWithoutPaiementNestedInput
   }
@@ -11878,8 +11617,8 @@ export namespace Prisma {
   export type PaiementUncheckedUpdateWithoutUtilisateurInput = {
     id?: IntFieldUpdateOperationsInput | number
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUncheckedUpdateManyWithoutPaiementNestedInput
   }
@@ -11887,8 +11626,8 @@ export namespace Prisma {
   export type PaiementUncheckedUpdateManyWithoutUtilisateurInput = {
     id?: IntFieldUpdateOperationsInput | number
     montant?: FloatFieldUpdateOperationsInput | number
-    statut?: EnumStatutPaiementFieldUpdateOperationsInput | $Enums.StatutPaiement
-    moyen?: EnumMoyenPaiementFieldUpdateOperationsInput | $Enums.MoyenPaiement
+    statut?: StringFieldUpdateOperationsInput | string
+    moyen?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11942,14 +11681,14 @@ export namespace Prisma {
   export type DemandeCreateManyPaiementInput = {
     id?: number
     utilisateurId: number
-    typeActe: $Enums.TypeActe
-    statut: $Enums.StatutDemande
+    typeActe?: string | null
+    statut?: string | null
     createdAt?: Date | string
   }
 
   export type DemandeUpdateWithoutPaiementInput = {
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     utilisateur?: UtilisateurUpdateOneRequiredWithoutDemandesNestedInput
     fichiers?: FichierUpdateManyWithoutDemandeNestedInput
@@ -11959,8 +11698,8 @@ export namespace Prisma {
   export type DemandeUncheckedUpdateWithoutPaiementInput = {
     id?: IntFieldUpdateOperationsInput | number
     utilisateurId?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fichiers?: FichierUncheckedUpdateManyWithoutDemandeNestedInput
     acte?: ActeUncheckedUpdateOneWithoutDemandeNestedInput
@@ -11969,8 +11708,8 @@ export namespace Prisma {
   export type DemandeUncheckedUpdateManyWithoutPaiementInput = {
     id?: IntFieldUpdateOperationsInput | number
     utilisateurId?: IntFieldUpdateOperationsInput | number
-    typeActe?: EnumTypeActeFieldUpdateOperationsInput | $Enums.TypeActe
-    statut?: EnumStatutDemandeFieldUpdateOperationsInput | $Enums.StatutDemande
+    typeActe?: NullableStringFieldUpdateOperationsInput | string | null
+    statut?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11981,7 +11720,7 @@ export namespace Prisma {
     email: string
     telephone?: string | null
     motDePasse: string
-    role: $Enums.Role
+    role: string
     createdAt?: Date | string
   }
 
@@ -11991,7 +11730,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUpdateManyWithoutUtilisateurNestedInput
     paiements?: PaiementUpdateManyWithoutUtilisateurNestedInput
@@ -12005,7 +11744,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     demandes?: DemandeUncheckedUpdateManyWithoutUtilisateurNestedInput
     paiements?: PaiementUncheckedUpdateManyWithoutUtilisateurNestedInput
@@ -12019,7 +11758,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     telephone?: NullableStringFieldUpdateOperationsInput | string | null
     motDePasse?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

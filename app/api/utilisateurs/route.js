@@ -27,16 +27,6 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Champs requis manquants.' }, { status: 400 });
     }
 
-    const roleKey = role.toLowerCase();
-
-    if (!Object.keys(Role).includes(roleKey)) {
-      return NextResponse.json({ error: 'Rôle invalide.' }, { status: 400 });
-    }
-
-    if (!commune || isNaN(Number(commune))) {
-      return NextResponse.json({ error: 'Commune invalide ou manquante.' }, { status: 400 });
-    }
-
     const hashedPassword = await bcrypt.hash(motDePasse, 10);
 
     const existingUser = await prisma.utilisateur.findUnique({
@@ -53,9 +43,7 @@ export async function POST(req) {
       email,
       telephone,
       motDePasse: hashedPassword,
-      role: Role[roleKey],
-      ...(roleKey === 'citoyen' && { communeCitoyenId: Number(commune) }),
-      ...(roleKey === 'agent' && { communeAgentId: Number(commune) })
+      role,
     };
 
     const newUtilisateur = await prisma.utilisateur.create({ data: userData });

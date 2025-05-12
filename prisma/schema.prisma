@@ -21,7 +21,7 @@ model Utilisateur {
   email          String        @unique
   telephone      String?
   motDePasse     String
-  role           Role
+  role           String
   communeId      Int?
   commune        Commune?      @relation(fields: [communeId], references: [id])
   demandes       Demande[]
@@ -34,8 +34,8 @@ model Demande {
   id             Int             @id @default(autoincrement())
   utilisateurId  Int
   utilisateur    Utilisateur     @relation(fields: [utilisateurId], references: [id])
-  typeActe       TypeActe
-  statut         StatutDemande
+  typeActe       String?
+  statut         String?
   fichiers       Fichier[]
   paiement       Paiement?       @relation(fields: [paiementId], references: [id])
   paiementId     Int?
@@ -56,8 +56,8 @@ model Acte {
   id             Int           @id @default(autoincrement())
   demandeId      Int           @unique
   demande        Demande       @relation(fields: [demandeId], references: [id])
-  fichierUrl     String
-  type           TypeActe
+  fichierUrl     String?
+  type           String
   createdAt      DateTime      @default(now())
 }
 
@@ -73,8 +73,8 @@ model Notification {
 model Paiement {
   id             Int           @id @default(autoincrement())
   montant        Float
-  statut         StatutPaiement
-  moyen          MoyenPaiement
+  statut         String
+  moyen          String
   utilisateurId  Int
   utilisateur    Utilisateur   @relation(fields: [utilisateurId], references: [id])
   demandes       Demande[]
@@ -85,32 +85,4 @@ model Commune {
   id             Int           @id @default(autoincrement())
   nom            String        @unique
   utilisateurs   Utilisateur[]
-}
-
-enum Role {
-  Citoyen
-  Agent
-}
-
-enum StatutDemande {
-  EN_ATTENTE
-  VALIDE
-  REJETE
-}
-
-enum TypeActe {
-  NAISSANCE
-  MARIAGE
-  DECES
-}
-
-enum StatutPaiement {
-  EFFECTUE
-  ECHOUE
-}
-
-enum MoyenPaiement {
-  MOBILE_MONEY
-  CARTE
-  ESPECE
 }

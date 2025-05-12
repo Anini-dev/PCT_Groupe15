@@ -1,16 +1,16 @@
 'use client';
-
+import '../style/animated.css';
+import '../style/templatemo-chain-app-dev.css';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 
-export default function InscriptionForm() {
+export default function Authentification() {
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
     email: '',
     telephone: '',
     motDePasse: '',
-    role: '',
     commune: ''
   });
 
@@ -60,81 +60,53 @@ export default function InscriptionForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-orange-500 to-green-500">
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-10 w-full max-w-lg">
-        <div className="flex justify-center mb-6">
-          <img src="/logo.png" alt="Logo" className="h-16" />
-        </div>
+    <div className="user_register">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="nom">Nom</label>
+        <input type="text" name="nom" value={formData.nom} onChange={handleChange} />
+        <br />
 
-        <h2 className="text-2xl font-bold text-center text-orange-600 mb-8">Formulaire dinscription</h2>
+        <label htmlFor="prenom">Prénom</label>
+        <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} />
+        <br />
 
-        <div className="grid grid-cols-1 gap-4">
-          <input type="text" name="nom" placeholder="Nom" onChange={handleChange} className="input" required />
-          <input type="text" name="prenom" placeholder="Prénom" onChange={handleChange} className="input" required />
-          <input type="email" name="email" placeholder="Email" onChange={handleChange} className="input" required />
-          <input type="text" name="telephone" placeholder="Téléphone" onChange={handleChange} className="input" required />
-          <input type="password" name="motDePasse" placeholder="Mot de passe" onChange={handleChange} className="input" required />
-          <select name="role" onChange={handleChange} required>
-            <option value="">-- Choisir un rôle --</option>
-            <option value="Citoyen">Citoyen</option>
-            <option value="Agent">Agent</option>
-          </select>
+        <label htmlFor="email">Email</label>
+        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+        <br />
 
-          <div className="relative">
-            <input
-              type="text"
-              name="commune"
-              placeholder="Nom de la commune"
-              value={formData.commune}
-              onChange={handleCommuneChange}
-              className="input"
-              required
-              autoComplete="off"
-            />
-            {showSuggestions && suggestions.length > 0 && (
-              <ul className="absolute z-10 bg-white border rounded-md w-full mt-1 max-h-48 overflow-y-auto">
-                {suggestions.map((commune) => (
-                  <li
-                    key={commune.id}
-                    className="px-4 py-2 hover:bg-orange-100 cursor-pointer"
-                    onClick={() => {
-                      setFormData({ ...formData, commune: commune.nom.toString() });
-                      setShowSuggestions(false);
-                      setSuggestions([]);
-                    }}
-                  >
-                    {commune.nom}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
+        <label htmlFor="telephone">Téléphone</label>
+        <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} />
+        <br />
 
-        {error && (
-          <p className="mt-4 text-red-600 text-sm text-center">
-            {error}
-          </p>
+        <label htmlFor="motDePasse">Mot de passe</label>
+        <input type="password" name="motDePasse" value={formData.motDePasse} onChange={handleChange} />
+        <br />
+
+        <label htmlFor="commune">Commune</label>
+        <input type="text" name="commune" value={formData.commune} onChange={handleCommuneChange} />
+        {showSuggestions && (
+          <ul>
+            {suggestions.map((c, idx) => (
+              <li key={idx} onClick={() => {
+                setFormData({ ...formData, commune: c });
+                setShowSuggestions(false);
+              }}>{c}</li>
+            ))}
+          </ul>
         )}
+        <br />
 
-        <button type="submit" className="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl">
-          Sinscrire
-        </button>
+        <div className="checkbox">
+          <input id="send_updates" type="checkbox" />
+          <label htmlFor="send_updates">Send me occasional email updates</label>
+        </div>
+
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        <div className="action_btns">
+          <button type="submit" className="btn btn_red">Register</button>
+        </div>
       </form>
-
-      <style jsx>{`
-        .input {
-          padding: 0.75rem;
-          border: 1px solid #ccc;
-          border-radius: 0.75rem;
-          width: 100%;
-        }
-        input:focus, select:focus {
-          outline: none;
-          border-color: #fb923c;
-          box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.3);
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
+    //etait pas la
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      // "@/*": ["./*"]
+      "@/*": ["app/*"]
     }
   }
 }
